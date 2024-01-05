@@ -14,7 +14,6 @@ public class AddArticleRequest {
 
     private String title;
     private String content;
-    private LocalDateTime createdAt;
 
     public Article toEntity() { // 생성자를 사용해 객체 생성
         return Article.builder()
