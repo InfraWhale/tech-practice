@@ -1,0 +1,35 @@
+<html>
+<head>
+</head>
+<body>
+<div id="root"></div>
+<!-- 실무에선 따로 쓸일은 없을거임 -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>--> <!-- 배포용 -->
+<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+<script>
+  'use strict';
+
+  const e = React.createElement;
+
+  class LikeButton extends React.Component { // 컴포넌트 : 데이터, 화면 하나로 묶어둠
+    constructor(props) {
+      super(props);
+      this.state = {liked: false}; // 스테이트 : 데이터. 화면의 바뀌는 부분
+    }
+
+    render() {
+      if (this.state.liked) {
+        return 'You liked this.';
+      }
+
+      return e('button', {onClick: () => this.setState({liked: true})}, 'Like');
+    }
+  }
+</script>
+<script>
+  ReactDOM.createRoot(document.querySelector('#root')).render(e(LikeButton));
+</script>
+</body>
+</html>
