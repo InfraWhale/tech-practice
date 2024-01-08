@@ -38,14 +38,27 @@ public class JpaMain {
 //            findMember.setName("HelloJPA");
 
             //JPQL로 조회
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                            .getResultList();
+//            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+//                            .getResultList();
+//
+//            for (Member member : result) {
+//                System.out.println("member.name = " + member.getName());
+//            }
 
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
+            // 비영속
+            Member member = new Member();
+            member.setId(200L);
+            member.setName("HelloJPA2");
 
-            tx.commit(); // 작업 끝나면 커밋 무조건 해줘야함
+            // 영속
+            System.out.println("=== BEFORE ===");
+            em.persist(member);
+
+            // 준영속 - 영속성 컨텍스트에서 분리
+            em.detach(member);
+            System.out.println("=== AFTER ===");
+
+            tx.commit(); // 작업 끝나면 커밋 무조건 해줘야함 -> 이 시점에 db에 쿼리가 날아감
         } catch (Exception e) {
             tx.rollback();
         } finally {
