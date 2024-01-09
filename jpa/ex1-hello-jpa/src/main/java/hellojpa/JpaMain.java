@@ -45,18 +45,25 @@ public class JpaMain {
 //                System.out.println("member.name = " + member.getName());
 //            }
 
-            // 비영속
+//            // 비영속
+//            Member member = new Member();
+//            member.setId(200L);
+//            member.setName("HelloJPA2");
+//
+//            // 영속
+//            System.out.println("=== BEFORE ===");
+//            em.persist(member);
+//
+//            // 준영속 - 영속성 컨텍스트에서 분리
+//            em.detach(member);
+//            System.out.println("=== AFTER ===");
+
             Member member = new Member();
-            member.setId(200L);
-            member.setName("HelloJPA2");
+            member.setId(2L);
+            member.setUsername("B");
+            member.setRoleType(RoleType.ADMIN);
 
-            // 영속
-            System.out.println("=== BEFORE ===");
             em.persist(member);
-
-            // 준영속 - 영속성 컨텍스트에서 분리
-            em.detach(member);
-            System.out.println("=== AFTER ===");
 
             tx.commit(); // 작업 끝나면 커밋 무조건 해줘야함 -> 이 시점에 db에 쿼리가 날아감
         } catch (Exception e) {
