@@ -58,12 +58,53 @@ public class JpaMain {
 //            em.detach(member);
 //            System.out.println("=== AFTER ===");
 
+//            Member member1 = new Member();
+//            member1.setUsername("A");
+//
+//            Member member2 = new Member();
+//            member2.setUsername("B");
+//
+//            Member member3 = new Member();
+//            member3.setUsername("C");
+//
+//            System.out.println("====================");
+//
+//            em.persist(member1);
+//            em.persist(member2);
+//            em.persist(member3);
+//
+//            System.out.println("member1.id = " + member1.getId());
+//            System.out.println("member2.id = " + member2.getId());
+//            System.out.println("member3.id = " + member3.getId());
+//
+//            System.out.println("====================");
+
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
             Member member = new Member();
-            member.setId(2L);
-            member.setUsername("B");
-            member.setRoleType(RoleType.ADMIN);
+            member.setUserName("member1");
+            //member.changeTeam(team); // 연관관계의 주인에 값을 무조건 입력해줘야 함
 
             em.persist(member);
+
+            team.addMember(member);
+
+            // team.getMembers().add(member); // 양방향 연관관계면 양쪽에 다 세팅해주자 // 엔티티 세터에 만들어주는걸 추천
+
+//            em.flush();
+//            em.clear();
+
+//            Member findMember = em.find(Member.class, member.getId());
+//            List<Member> members = findMember.getTeam().getMembers();
+
+            Team findTeam = em.find(Team.class, team.getId());
+            List<Member> members = findTeam.getMembers();
+
+            for (Member m : members) {
+                System.out.println("m : " + m.getUserName());
+            }
 
             tx.commit(); // 작업 끝나면 커밋 무조건 해줘야함 -> 이 시점에 db에 쿼리가 날아감
         } catch (Exception e) {

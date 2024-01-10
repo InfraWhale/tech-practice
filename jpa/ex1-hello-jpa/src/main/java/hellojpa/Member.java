@@ -7,40 +7,18 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-//@Table(name = "MBR") // 테이블 실제 이름하고 매핑
 public class Member {
-
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
-    @Column(name = "name", nullable = false)
-    private String username;
-    private Integer age;
-    @Enumerated(EnumType.STRING) //EnumType.ORDINAL 사용금지
-    private RoleType roleType;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
+    @Column(name = "USERNAME")
+    private String userName;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
 
-    private LocalDate testLocalDate;
-    private LocalDateTime testLocalDateTime;
-
-    @Lob
-    private String description;
-
-
-    public  Member() {
-
-    }
-
-    public  Member() {
-
-    }
-
-    public Member(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @ManyToOne // Member 입장에서 Many
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -50,51 +28,24 @@ public class Member {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public Integer getAge() {
-        return age;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    //    public void changeTeam(Team team) {
+//        this.team = team;
+//        team.getMembers().add(this); // 연관관계 편의 메소드
+//    }
 }
