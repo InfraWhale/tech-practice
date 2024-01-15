@@ -13,7 +13,7 @@ public class Team {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "team") // Team이 One // mappedBy : 나의 반대편에 걸려있는 친구 말하는거
+    @OneToMany(mappedBy = "team") // Team이 One // mappedBy : 나의 반대편에 걸려있는 친구(FK) 말하는거
     private List<Member> members = new ArrayList<>();
 
     public void addMember(Member member) {
