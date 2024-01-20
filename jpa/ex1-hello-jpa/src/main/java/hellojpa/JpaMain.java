@@ -17,20 +17,21 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member1 = new Member();
-            member1.setUserName("member1");
-            em.persist(member1);
+
+            Child child1 = new Child();
+            Child child2 = new Child();
+
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
+
+            em.persist(parent);
 
             em.flush();
             em.clear();
 
-            Member refMember = em.getReference(Member.class, member1.getId());
-            System.out.println("refMember = " + refMember.getClass()); //Proxy
-            // refMember.getUserName(); // 강제 초기화
-
-            Hibernate.initialize(refMember); // 강제 초기화
-
-/*            System.out.println("getUserName = " + emf.getPersistenceUnitUtil().isLoaded(refMember)); // 초기화 여부*/
+            Parent findParent = em.find(Parent.class, parent.getId());
+            findParent.getChildList().remove(0);
 
             tx.commit(); // 작업 끝나면 커밋 무조건 해줘야함 -> 이 시점에 db에 쿼리가 날아감
         } catch (Exception e) {

@@ -16,15 +16,13 @@ public class Member extends BaseEntity {
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
 
-    @ManyToOne // Member 입장에서 Many
+    @ManyToOne(fetch = FetchType.EAGER) // Member 입장에서 Many
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
-
-
 
     public Long getId() {
         return id;
