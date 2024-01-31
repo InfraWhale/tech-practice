@@ -121,21 +121,21 @@ public class JpaMain {
             
             // 조인
 
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
-
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setAge(10);
-
-            member.changeTeam(team);
-
-            em.persist(member);
-
-            em.flush();
-            em.clear();
-
+//            Team team = new Team();
+//            team.setName("teamA");
+//            em.persist(team);
+//
+//            Member member = new Member();
+//            member.setUsername("member1");
+//            member.setAge(10);
+//
+//            member.changeTeam(team);
+//
+//            em.persist(member);
+//
+//            em.flush();
+//            em.clear();
+/*
 //            String query = "select m from Member m inner join m.team t";
 //            String query = "select m from Member m left outer join m.team t";
 //            String query = "select m from Member m, Team t where m.username = t.name";
@@ -145,7 +145,101 @@ public class JpaMain {
             String query = "select m from Member m left join Team t on m.username = t.name"; // 연관관계 없는 엔티티 외부 조인
 
             List<Member> result = em.createQuery(query, Member.class)
+                    .getResultList();*/
+
+            // 서브쿼리
+
+/*            String query = "select (select avg(m1.age) from Member m1) as avgAge from Member m join Team t on m.username = t.name";
+//            String query = "select mm from (select m.age from Member m) as mm"; // 이건 안됨 (from 절 서브쿼리)
+            List<Member> result = em.createQuery(query, Member.class)
                     .getResultList();
+
+            System.out.println("result = " + result.size());*/
+
+            // 타입 표현
+
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("관리자");
+            member.setAge(10);
+            member.setType(MemberType.ADMIN);
+
+            member.changeTeam(team);
+
+            em.persist(member);
+
+            em.flush();
+            em.clear();
+
+/*
+//            String query = "select m.username, 'HELLO', TRUE from Member m "
+//                    + "where m.type = jpql.MemberType.USER";
+//            List<Object[]> result = em.createQuery(query)
+//                    .getResultList();
+
+            String query = "select m.username, 'HELLO', TRUE from Member m "
+                    + "where m.type = :userType";
+            List<Object[]> result = em.createQuery(query)
+                    .setParameter("userType", MemberType.ADMIN)
+                    .getResultList();
+
+            for (Object[] objects : result) {
+                System.out.println("objects = " + objects[0]);
+                System.out.println("objects = " + objects[1]);
+                System.out.println("objects = " + objects[2]);
+            }*/
+
+            // 조건식
+
+/*
+//            String query = "select " +
+//                                    "case when m.age <= 10 then '학생요금' " +
+//                                    "     when m.age >= 60 then '학생요금' " +
+//                                    "     else '일반요금' " +
+//                                    "end " +
+//                            "from Member m";
+//            List<String> result = em.createQuery(query, String.class)
+//                    .getResultList();
+            
+//            String query = "select coalesce(m.username, '이름 없는 회원') from Member m"; // 하나씩 조회해서 null이 아니면 반환, 다 null이면 뒤에꺼 반환
+//            List<String> result = em.createQuery(query, String.class)
+//                    .getResultList();
+
+            String query = "select nullif(m.username, '관리자') as username "
+                    + "from Member m"; // 앞뒤가 같으면 null, 다르면 첫번쨰 반환
+            List<String> result = em.createQuery(query, String.class)
+                    .getResultList();
+
+            for(String s : result) {
+                System.out.println("s = " + s);
+            }*/
+
+            // JPQL 함수
+
+//            String query = "select CONCAT('a', 'b') from Member m";
+//            String query = "select 'a' || 'b' from Member m";
+//            String query = "select substring(m.username, 2, 3) from Member m";
+//            List<String> result = em.createQuery(query, String.class)
+//                    .getResultList();
+//            for(String s : result) {
+//                System.out.println("s = " + s);
+//            }
+
+//            String query = "select locate('de', 'abcdegf') from Member m";
+//            String query = "select size(t.members) from Team t";
+
+            String query = "select index(t.members) from Team t"; // 안쓰는게 좋음
+            
+            List<Integer> result = em.createQuery(query, Integer.class)
+                    .getResultList();
+
+            for(Integer s : result) {
+                System.out.println("s = " + s);
+            }
+
 
             tx.commit(); // 작업 끝나면 커밋 무조건 해줘야함 -> 이 시점에 db에 쿼리가 날아감
         } catch (Exception e) {

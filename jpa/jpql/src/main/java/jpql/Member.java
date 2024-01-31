@@ -14,6 +14,9 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    @Enumerated(EnumType.STRING) // 기본이 ORDINAL(숫자), STRING으로 명시!!!
+    private MemberType type;
+
     public void changeTeam(Team team) {
         this.team = team;
         team.getMembers().add(this);
@@ -41,6 +44,14 @@ public class Member {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public MemberType getType() {
+        return type;
+    }
+
+    public void setType(MemberType type) {
+        this.type = type;
     }
 
     @Override
