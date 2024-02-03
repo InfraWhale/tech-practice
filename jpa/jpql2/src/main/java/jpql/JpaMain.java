@@ -85,23 +85,26 @@ public class JpaMain {
 
             Member member1 = new Member();
             member1.setUsername("회원1");
+            member1.setAge(0);
             member1.setTeam(teamA);
             em.persist(member1);
 
             Member member2 = new Member();
             member2.setUsername("회원2");
+            member2.setAge(0);
             member2.setTeam(teamA);
             em.persist(member2);
 
             Member member3 = new Member();
             member3.setUsername("회원3");
+            member3.setAge(0);
             member3.setTeam(teamB);
             em.persist(member3);
 
             em.flush();
             em.clear();
 
-//            String query = "select m From Member m";
+/*//            String query = "select m From Member m";
 //
 //            List<Member> result = em.createQuery(query, Member.class).getResultList();
 //
@@ -171,10 +174,30 @@ public class JpaMain {
             
             // 페치조인 (연관된 엔티티 함께 조회) (즉시로딩과 비슷)
             // N+1문제 해결하기 좋음
-            String query = "select t From Team t join fetch t.members m";
-
+//            String query = "select t From Team t join fetch t.members";
+//            List<Team> result = em.createQuery(query, Team.class)
+//                    .setFirstResult(0)
+//                    .setMaxResults(1)
+//                    .getResultList();
+            // fetch join에는 alias 주면 안됨
+            // 쿼리랑 jpa의 의도랑 다르게 처리될 수가 있음
+            
+            // 둘 이상 컬렉션 페치 조인 하면 안됨
+            
+            // 컬렉션은 페이징 API 사용 불가
+            // 쓸거면 1:다가 아닌 다:1로 가보자
+//            String query = "select m From Member m join fetch m.team t";
+            
+            // Team쪽에 @BatchSize 추가도 가능 (Lazy 로딩할거 100개면 100개 일단 지정한만큼 실행)
+            String query = "select t From Team t";
             List<Team> result = em.createQuery(query, Team.class)
+                    .setFirstResult(0)
+                    .setMaxResults(2)
                     .getResultList();
+
+
+//            List<Team> result = em.createQuery(query, Team.class)
+//                    .getResultList();
 
             System.out.println("result = " +result.size());
 
@@ -183,8 +206,60 @@ public class JpaMain {
                 for(Member member : team.getMembers()) {
                     System.out.println("Member : " +  member);
                 }
-            }
+            }*/
 
+            // 엔티티 직접 사용
+//            String query = "select m From Member m where m =:member";
+//
+//            Member findMember = em.createQuery(query, Member.class)
+//                    .setParameter("member", member1) // 쿼리 맨 마지막 파라미터 세팅해줌
+//                    .getSingleResult();
+
+//            String query = "select m From Member m where m.id =:memberId";
+//
+//            Member findMember = em.createQuery(query, Member.class)
+//                    .setParameter("memberId", member1.getId()) // 쿼리 맨 마지막 파라미터 세팅해줌
+//                    .getSingleResult();
+//
+//            System.out.println("findMember = " + findMember);
+
+//            String query = "select m From Member m where m.team =:team"; // 외래 키 값
+//
+//            List<Member> members = em.createQuery(query, Member.class)
+//                    .setParameter("team", teamA) // 쿼리 맨 마지막 파라미터 세팅해줌
+//                    .getResultList();
+//
+//            for (Member member : members) {
+//                System.out.println("member = " + member);
+//            }
+
+            // Named 쿼리 - 실무에선 repository에서 Spring Data JPA 사용 더 많이 함
+//            List<Member> resultList = em.createNamedQuery("Member.findByUsername", Member.class)
+//                    .setParameter("username", "회원1")
+//                    .getResultList();
+//
+//            for (Member member : resultList) {
+//                System.out.println("member = " + member);
+//            }
+
+            // 벌크 연산 // 영속성 컨텍스트 무시하고 DB 직접 쿼리
+            // 벌크 연산 먼저 실행하거나(영속성 컨텍스트 실행 전), 실행 후 영속성 컨텍스트 초기화 해줘야 함
+
+            int resultCount = em.createQuery("update Member m set m.age = 20").executeUpdate();
+
+            System.out.println("resultCount = " + resultCount);
+
+            System.out.println("member1.getAge() = " + member1.getAge());
+            System.out.println("member2.getAge() = " + member2.getAge());
+            System.out.println("member3.getAge() = " + member3.getAge());
+            // 이 경우 영속성 컨텍스트 상엔 전부 0임 / DB에는 20으로 업데이트
+
+            em.clear();
+
+            Member findMember = em.find(Member.class, member1.getId());
+
+            System.out.println("findMember = " + findMember.getAge());
+            // 이렇게 하면 영속성 컨텍스트에도 20
 
             tx.commit(); // 작업 끝나면 커밋 무조건 해줘야함 -> 이 시점에 db에 쿼리가 날아감
         } catch (Exception e) {
