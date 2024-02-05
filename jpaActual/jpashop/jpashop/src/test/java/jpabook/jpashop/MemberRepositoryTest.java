@@ -1,16 +1,14 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class) // junit한테 스프링 관련 테스트를 함을 알려줌
 @SpringBootTest
