@@ -12,7 +12,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery") //order 테이블에 있는 delivery 필드에 의해 매핑되었음
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY) //order 테이블에 있는 delivery 필드에 의해 매핑되었음
     private Order order;
 
     @Embedded
