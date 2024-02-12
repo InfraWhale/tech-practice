@@ -64,8 +64,10 @@ public class itemController {
     }
 
     @PostMapping("items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm form) { // ModelAttribute("form") : updateItemForm.html 에서 form 태그를 그대로 가져옴
-        Book book = new Book();
+    public String updateItem(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) { // ModelAttribute("form") : updateItemForm.html 에서 form 태그를 그대로 가져옴
+
+        // merge 사용시
+        /*        Book book = new Book();
 
         book.setId(form.getId());
         book.setName(form.getName());
@@ -74,7 +76,11 @@ public class itemController {
         book.setAuthor(form.getAuthor());
         book.setIsbn(form.getIsbn());
 
-        itemService.saveItem(book);
+        itemService.saveItem(book);*/
+
+        // 변경감지 사용시
+        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
+        
         return "redirect:/items";
     }
 }

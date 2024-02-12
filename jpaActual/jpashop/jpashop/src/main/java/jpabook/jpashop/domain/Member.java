@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class Member {
     @Column(name = "member_id") // db상엔 컬럼명이 이렇게 매핑
     private Long id;
 
+    @NotEmpty // 빈 값 안넘기도록 validation 추가
     private String name;
 
     @Embedded // 내장 타입이 포함됨
