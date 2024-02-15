@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
+    // @JsonIgnore
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY) //order 테이블에 있는 delivery 필드에 의해 매핑되었음
     private Order order;
 
