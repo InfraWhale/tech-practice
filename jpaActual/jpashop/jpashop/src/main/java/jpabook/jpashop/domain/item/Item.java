@@ -5,10 +5,12 @@ import jpabook.jpashop.domain.Category;
 import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// @BatchSize(size = 1000) // xToOne의 경우 엔티티에 적어줌 , default_batch_fetch_size 와 같음
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 한 테이블에 다 넣음
 @DiscriminatorColumn(name = "dtype") // 아이템 유형별 구분 컬럼

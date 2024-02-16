@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class Order {
     @JoinColumn(name = "member_id") // 해당 FK 컬럼이랑 조인 | 연관관계의 주인
     private Member member;
 
+    // @BatchSize(size = 1000) // xToMany의 경우 필드에 적어줌 , default_batch_fetch_size 와 같음
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // cascade : 컬렉션 안에 있는 엔티티들도 한꺼번에 persist
     private List<OrderItem> orderItems = new ArrayList<>();
 

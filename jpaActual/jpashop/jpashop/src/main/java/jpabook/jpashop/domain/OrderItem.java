@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Getter @Setter
@@ -17,6 +18,7 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
+    // !!! @BatchSize(size = 1000) 안됨. xToOne의 경우 엔티티에 적어줌 , default_batch_fetch_size 와 같음
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
