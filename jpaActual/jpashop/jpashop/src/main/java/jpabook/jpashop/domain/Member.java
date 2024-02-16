@@ -23,7 +23,7 @@ public class Member {
     @Embedded // 내장 타입이 포함됨
     private Address address;
 
-    // @JsonIgnore // 무한루프 방지
+    @JsonIgnore // 무한루프 방지
     @OneToMany(mappedBy = "member") // 일대다 관계 | order 테이블에 있는 member 필드에 의해 매핑되었음
     private List<Order> orders = new ArrayList<>();
 }
