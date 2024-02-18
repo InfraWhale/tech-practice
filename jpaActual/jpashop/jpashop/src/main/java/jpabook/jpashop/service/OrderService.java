@@ -1,6 +1,5 @@
 package jpabook.jpashop.service;
 
-import jakarta.persistence.Table;
 import jpabook.jpashop.domain.Delivery;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
@@ -34,7 +33,8 @@ public class OrderService {
         // 영속성 컨텍스트 안에서 엔티티를 조작하는게 변경감지 등등에서도 더 유리함
         
         //엔티티 조회
-        Member member = memberRepository.findOne(memberId);
+        // Member member = memberRepository.findOne(memberId);
+        Member member = memberRepository.findById(memberId).get();
         Item item = itemRepository.findOne(itemId);
 
         //배송정보 생성
@@ -66,6 +66,7 @@ public class OrderService {
     
     //검색
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.findAllByString(orderSearch);
+        //return orderRepository.findAllByString(orderSearch);
+        return orderRepository.findAll(orderSearch);
     }
 }

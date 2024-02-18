@@ -15,6 +15,7 @@ spring:
 #        show_sql: true #system.out으로 출력하는거 (안씀)
         format_sql: true
         default_batch_fetch_size: 100 #최적화 옵션
+#    open-in-view: false # OSIV 끄기
 
 logging.level:
     org.hibernate.SQL: debug #logger로 출력하는거 (사용)

@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +37,7 @@ public class MemberServiceTest {
 
         //then
         em.flush(); // 이렇게 하면 insert 쿼리도 볼 수 있음
-        assertEquals(member, memberRepository.findOne(savedId));
+        assertEquals(member, memberRepository.findById(savedId).get());
     }
     
     @Test(expected = IllegalStateException.class) // try-catch 할 필요 없음
