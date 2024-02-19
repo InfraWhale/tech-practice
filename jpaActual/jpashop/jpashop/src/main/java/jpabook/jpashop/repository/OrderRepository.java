@@ -72,6 +72,7 @@ public class OrderRepository {
     /**
      * JPA Criteria
      */
+
     // 이거도 권장하는 방법은 아님
     public List<Order> findAllByCriteria(OrderSearch orderSearch) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
