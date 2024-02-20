@@ -1,0 +1,22 @@
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:test #메모리 모드로 동작 (실제 데이터랑 분리해서 테스트 가능)
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop (앱 종료 시점에 모든 테이블 drop이 추가)
+##      자동으로 테이블 만들어줌
+#    properties:
+#      hibernate:
+##        show_sql: true #system.out으로 출력하는거 (안씀)
+#        format_sql: true
+#        default_batch_fetch_size: 1000 #최적화 옵션
+
+# 단, 스프링부트는 별도 설정 없으면 메모리모드로 돌리므로, 다 지워도 괜찮음
+
+logging.level:
+    org.hibernate.SQL: debug #logger로 출력하는거 (사용)
+    org.hibernate.orm.jdbc.bind: trace
