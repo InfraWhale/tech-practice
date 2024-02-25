@@ -7,6 +7,9 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id", "username", "age"}) // 연관관계 필드는 ToString 안하는게 좋음
+
+@NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
+
 public class Member {
 
     @Id @GeneratedValue

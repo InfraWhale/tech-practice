@@ -1,14 +1,24 @@
 package study.datajpa.repository;
 
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
+
+    Member findByUsername(String username);
 
     List<Member> findByUsernameAndAgeGreaterThan(String username, int age);
 
@@ -26,4 +36,38 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Query("select m from Member m where m.username in :names")
     List<Member> findByNames(@Param("names") List<String> names);
+
+    List<Member> findListByUsername(String username); // 컬렉션
+    Member findMemberByUsername(String username); // 단건
+    Optional<Member> findOptionalByUsername(String username); // 단건 Optional
+
+/*    @Query(value = "select m from Member m left join m.team t",
+        countQuery = "select count(m.username) from Member m")*/
+    Page<Member> findByAge(int age, Pageable pageable);
+    
+    // 조인이 너무 많이 걸려있으면 countQuery를 분리하는거도 방법
+
+/*    Slice<Member> findByAge(int age, Pageable pageable);*/
+
+    @Modifying(clearAutomatically = true) // executeUpdate()의 역할, clearAutomatically : 업데이트 이후 영속성 컨텍스트 자동으로 날려줌
+    @Query("update Member m set m.age = m.age + 1 where m.age >= :age")
+    int bulkAgePlus(@Param("age") int age);
+
+    @Query("select m from Member m left join fetch m.team")
+    List<Member> findMemberFetchJoin();
+
+    @Override
+    @EntityGraph(attributePaths = {"team"})
+    List<Member> findAll();
+
+    //위랑 같음
+    @EntityGraph(attributePaths = {"team"})
+    @Query("select m from Member m")
+    List<Member> findMemberEntityGraph();
+
+//    @EntityGraph(attributePaths = ("team"))
+    @EntityGraph("Member.all")
+    // 엔티티에서 등록한 @NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team")) 사용
+    List<Member> findEntityGraphByUsername(@Param("username") String username);
+
 }
