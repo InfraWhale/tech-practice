@@ -302,4 +302,34 @@ class MemberRepositoryTest {
         }
 
     }
+
+    @Test
+    public void queryHint() {
+        //given
+        Member member1 = new Member("member1", 10);
+        memberRepository.save(member1);
+        em.flush(); //영속성 컨텍스트 결과를 db랑 동기화
+        em.clear(); //영속성 컨텍스트 지움
+
+        //when
+/*        Member findMember = memberRepository.findById(member1.getId()).get();
+        findMember.setUsername("member2"); // 변경되었으므로 db에 업데이트 쿼리 나감*/
+
+        Member findMember = memberRepository.findReadOnlyByUsername("member1");
+        findMember.setUsername("member2");
+
+        em.flush();
+    }
+
+    @Test
+    public void lock() {
+        //given
+        Member member1 = new Member("member1", 10);
+        memberRepository.save(member1);
+        em.flush(); //영속성 컨텍스트 결과를 db랑 동기화
+        em.clear(); //영속성 컨텍스트 지움
+
+        //when
+        List<Member> result = memberRepository.findLockByUsername("member1");
+    }
 }
