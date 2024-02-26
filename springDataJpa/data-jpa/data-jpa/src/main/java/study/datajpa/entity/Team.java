@@ -10,7 +10,8 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id", "name"})
-public class Team {
+// Auditing 위해 JpaBaseEntity 확장 -> BaseEntity 확장
+public class Team extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "member_id")

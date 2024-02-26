@@ -15,7 +15,8 @@ import study.datajpa.entity.Member;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
+// MemberRepositoryCustom도 여기에 확장시켜줌
+public interface MemberRepository extends JpaRepository<Member, Long>, MemberRepositoryCustom {
 
     Member findByUsername(String username);
 

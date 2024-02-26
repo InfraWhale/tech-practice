@@ -10,7 +10,8 @@ import lombok.*;
 
 @NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
 
-public class Member {
+// Auditing 위해 JpaBaseEntity 확장 -> BaseEntity 확장
+public class Member extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "member_id")
