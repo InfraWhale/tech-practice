@@ -45,7 +45,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
         countQuery = "select count(m.username) from Member m")*/
     Page<Member> findByAge(int age, Pageable pageable);
     
-    // 조인이 너무 많이 걸려있으면 countQuery를 분리하는거도 방법
+    // 조인이 너무 많이 걸려있으면 countQuery를 분리 하는거도 방법
 
 /*    Slice<Member> findByAge(int age, Pageable pageable);*/
 
