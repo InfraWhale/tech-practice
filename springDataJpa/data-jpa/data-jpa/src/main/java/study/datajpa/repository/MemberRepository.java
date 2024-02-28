@@ -60,7 +60,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
     @EntityGraph(attributePaths = {"team"})
     List<Member> findAll();
 
-    //위랑 같음
+    // 위랑 같음
     @EntityGraph(attributePaths = {"team"})
     @Query("select m from Member m")
     List<Member> findMemberEntityGraph();
