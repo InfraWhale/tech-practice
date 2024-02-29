@@ -38,7 +38,7 @@ public class MemberController {
 //        return page.map(member -> new MemberDto(member));
     }
 
-    @PostConstruct // 의존성 주입이 이루어진 후 초기화를 수행하는 메서드
+//    @PostConstruct // 의존성 주입이 이루어진 후 초기화를 수행하는 메서드
     public void init() {
         for (int i = 0; i < 100; i++) {
             memberRepository.save(new Member("user" + i, i));
