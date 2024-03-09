@@ -764,8 +764,8 @@ public class QuerydslBasicTest {
         for (Member member1 : result) {
             System.out.println("member1 = " + member1);
         }
-        //결과를 보면 영속성컨텍스트를 가져오게 됨
-        //그래서 이 경우엔 그냥 em.flush(), em.clear()해주자
+        // 결과를 보면 영속성컨텍스트를 가져오게 됨
+        // 그래서 이 경우엔 그냥 em.flush(), em.clear()해주자
     }
 
     @Test
