@@ -740,11 +740,11 @@ public class QuerydslBasicTest {
     @Commit
     public void bulkUpdate() {
         
-        //영속성컨텍스트     DB
-        //member1 = 10 -> 비회원
-        //member2 = 20 -> 비회원
-        //member3 = 30 -> member3
-        //member4 = 40 -> member4
+        // 영속성컨텍스트     DB
+        // member1 = 10 -> 비회원
+        // member2 = 20 -> 비회원
+        // member3 = 30 -> member3
+        // member4 = 40 -> member4
         
         //영속성컨텍스트랑 DB의 값이 달라짐
 
