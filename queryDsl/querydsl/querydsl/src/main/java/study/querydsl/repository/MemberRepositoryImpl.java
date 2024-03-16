@@ -106,7 +106,7 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
         return PageableExecutionUtils.getPage(content, pageable, countQuery.fetch()::size);
         // countQuery.fetchCount()를 해줘야 count쿼리가 실행됨
         // 이렇게 하면 count쿼리가 실행될 필요가 없을 땐 count쿼리가 실행 안 함
-            // 페이지당 데이터 100개 인데 실제 데이터 3개
+        // 페이지당 데이터 100개 인데 실제 데이터 3개
     }
 
     private List<MemberTeamDto> getMemberTeamDtos(MemberSearchCondition condition, Pageable pageable) {
