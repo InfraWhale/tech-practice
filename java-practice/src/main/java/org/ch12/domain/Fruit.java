@@ -12,8 +12,7 @@ public class Fruit implements Eatable {
         this.name = name;
         this.weight = weight;
     }
-
-    @Override
+    
     public String toString() {
         if(name == null) {
             return this.getClass().getSimpleName();
