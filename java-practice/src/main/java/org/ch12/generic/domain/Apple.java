@@ -1,4 +1,4 @@
-package org.ch12.domain;
+package org.ch12.generic.domain;
 
 public class Apple extends Fruit {
 
