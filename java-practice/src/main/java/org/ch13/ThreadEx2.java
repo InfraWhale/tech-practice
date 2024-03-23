@@ -1,6 +1,6 @@
 package org.ch13;
 
-// 메인 쓰레드
+// 메인 쓰레드 start() 사용
 public class ThreadEx2 {
     public static void main(String[] args) throws Exception {
         ThreadEx2_1 t1 = new ThreadEx2_1();

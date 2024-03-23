@@ -1,5 +1,6 @@
 package org.ch13;
 
+// 쓰레드 그룹
 public class ThreadEx9 {
     public static void main(String[] args) throws Exception {
         ThreadGroup main = Thread.currentThread().getThreadGroup();
