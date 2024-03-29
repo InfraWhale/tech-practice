@@ -1,6 +1,6 @@
-package org.ch12;
+package org.ch12.generic;
 
-import org.ch12.domain.*;
+import org.ch12.generic.domain.*;
 
 // 제한된 지네릭 클래스
 public class FruitBoxEx2 {

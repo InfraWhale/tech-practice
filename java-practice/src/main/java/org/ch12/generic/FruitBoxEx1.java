@@ -1,9 +1,9 @@
-package org.ch12;
+package org.ch12.generic;
 
-import org.ch12.domain.Apple;
-import org.ch12.domain.Box;
-import org.ch12.domain.Fruit;
-import org.ch12.domain.Toy;
+import org.ch12.generic.domain.Apple;
+import org.ch12.generic.domain.Box;
+import org.ch12.generic.domain.Fruit;
+import org.ch12.generic.domain.Toy;
 
 // 지네릭 클래스의 객체 생성과 사용
 public class FruitBoxEx1 {

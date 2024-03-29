@@ -1,6 +1,6 @@
-package org.ch12;
+package org.ch12.generic;
 
-import org.ch12.domain.*;
+import org.ch12.generic.domain.*;
 
 // 와일드 카드 사용
 public class FruitBoxEx3 {
