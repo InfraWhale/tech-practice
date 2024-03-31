@@ -1,5 +1,7 @@
 package org.ch13;
 
+// sleep
+
 public class ThreadEx12 {
     public static void main(String[] args) {
         ThreadEx12_1 th1 = new ThreadEx12_1();

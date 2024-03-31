@@ -1,5 +1,6 @@
 package org.ch13;
 
+// interrupt(), interrupted()
 import javax.swing.*;
 
 public class ThreadEx13 {
