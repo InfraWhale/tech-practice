@@ -21,12 +21,13 @@ public class OrderServiceImpl implements OrderService{
     // 그래서 RateDiscountPolicy를 쓰고싶다면, 코드를 변경해야 한다. -> OCP 위반
 
     // 그래서 어떻게? 이렇게 한다.
+
     private final DiscountPolicy discountPolicy;
 
     // 단 이렇게 하면 NPE 발생한다.
 
 
-    @Autowired
+    // @Autowired // 중요 생성자 단 한개면 Autowired 생략가능
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
