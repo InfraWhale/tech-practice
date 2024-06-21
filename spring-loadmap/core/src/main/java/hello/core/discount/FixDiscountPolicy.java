@@ -2,9 +2,11 @@ package hello.core.discount;
 
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-// @Component : 둘다 컴포넌트로 등록해버리면 (Fix, Rate) :
+@Component // : 둘다 컴포넌트로 등록해버리면 (Fix, Rate) :
+//@Qualifier("fixDiscountPolicy")
 // org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with
 // name 'orderServiceImpl' defined in file [C:\Users\gyqja\git\tech-practice\spring-loadmap\core\out\production\classes\hello\core\order\OrderServiceImpl.class]:
 // Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'hello.core.discount.DiscountPolicy'
