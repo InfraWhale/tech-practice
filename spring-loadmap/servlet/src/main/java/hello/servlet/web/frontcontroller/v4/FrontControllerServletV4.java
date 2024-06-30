@@ -44,6 +44,8 @@ public class FrontControllerServletV4 extends HttpServlet {
         //paramMap
         Map<String, String> paramMap = createParamMap(request);
         Map<String, Object> model = new HashMap<>(); //추가
+        
+        // 모델뷰를 만들지 않고 바로 뷰 이름 만듬
         String viewName = controller.process(paramMap, model);
 
         // /WEB-INF/views/new-form.jsp

@@ -40,6 +40,7 @@ public class FrontControllerServletV2 extends HttpServlet {
             return;
         }
 
+        //각 컨트롤러에서 끝내버리는게 아니라, 결과를 MyView에 담아서 거기서 처리함(render)
         //new MyView("/WEB-INF/views/new-form.jsp)
         MyView view = controller.process(request, response);
         view.render(request,response);

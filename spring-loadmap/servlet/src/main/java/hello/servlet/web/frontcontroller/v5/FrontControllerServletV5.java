@@ -55,16 +55,19 @@ public class FrontControllerServletV5 extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
+        // 해당하는 핸들러(컨트롤러)를 꺼냄
         Object handler = getHandler(request);
 
         if(handler == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-
+        
+        // 지금 핸들러에 맞는 핸들러 어답터를 꺼냄
         MyHandlerAdapter adapter = getHandlerAdapter(handler);
-
+        
+        // 해당 핸들러에 해당하는 (원래라면 v3, v4 frontController에 있었을) 자바 코드가 실행됨
         ModelView mv = adapter.handle(request, response, handler);
 
         String viewName = mv.getViewName(); //논리이름 new-form
