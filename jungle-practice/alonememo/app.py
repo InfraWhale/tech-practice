@@ -52,7 +52,7 @@ def saving():
         'comment': comment_receive
     }
 
-    print("@@@@@@@@@@@3", article)
+    # print("@@@@@@@@@@@3", article)
 
     # 3. mongoDB에 데이터 넣기
     db.articles.insert_one(article)
