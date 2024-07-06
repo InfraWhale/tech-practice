@@ -2,10 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 
-client = MongoClient('mongodb+srv://sparta:jungle@cluster0.8hcdxo3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+client = MongoClient('')
 db = client.dbbook
 
-    
 # 타겟 URL을 읽어서 HTML를 받아오고,
 headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 url = 'https://www.yes24.com/Product/Category/BestSeller?categoryNumber=001&pageNumber=1&pageSize=50'

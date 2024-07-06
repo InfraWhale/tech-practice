@@ -4,9 +4,8 @@ from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
-client = MongoClient('mongodb+srv://sparta:jungle@cluster0.8hcdxo3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+client = MongoClient('')
 db = client.dbbook
-
 
 # HTML 화면 보여주기 
 @app.route('/')
