@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 from bson import ObjectId
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://sparta:jungle@cluster0.8hcdxo3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+client = MongoClient('')
 db = client.dbpractice
 
 ## HTML을 주는 부분
