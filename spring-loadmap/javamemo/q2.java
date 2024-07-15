@@ -37,6 +37,7 @@ public class q2 {
     }
 
     public static Integer getLCM(Integer num1, Integer num2) {
+
         return num1 * num2 / getGCD(num1, num2);
     }
 }
