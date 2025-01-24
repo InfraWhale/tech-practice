@@ -1,0 +1,77 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>웹게임</title>
+</head>
+<body>
+<div id="root"></div>
+<!-- 실무에선 따로 스크립트를 쓸일은 없을거임 -->
+<!-- 이건 원시적인 형태이다.-->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>--> <!-- 배포용 -->
+<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> <!--바벨 라이브러리 사용-->
+<script type="text/babel">
+  'use strict';
+
+  const e = React.createElement;
+
+  // 클래스를 쓰는 방식
+  // 잘 쓰진 않는다.
+
+  
+//  class LikeButton extends React.Component { // 컴포넌트 : 데이터, 화면 하나로 묶어둠
+//    constructor(props) {
+//      super(props);
+//    this.state = {liked: false}; // 스테이트 : 데이터. 화면의 바뀌는 부분
+//    }
+
+//    render() {
+//      if (this.state.liked) {
+//        return 'You liked this.'; // 화면에 나오는 것은 return으로 나온다.
+//      }
+      
+      // 자바스크립트 문법
+      //return e('button', {onClick: () => this.setState({liked: true})}, 'Like'); // 화면은 여기. 데이터가 바뀌면 화면도 바뀐다.
+
+      // JSX 문법 : 이렇게 태그를 넣으려면 바벨이라는 라이브러리를 써야 한다.
+//      return (
+//        <button onClick={() => {
+          // this.state.liked = true; // 이건 안된다.
+//          this.setState({ liked: true }); 
+//        }} >
+//          Like
+//        </button>
+//      )
+      // 형제 태그 쓰려면 부모 태그로 먼저 묶어줘야 한다.
+      // 모든 자바스크립트 코드는 {}로 묶어줘야 한다.
+//    }
+//  }
+
+  // 함수를 쓰는 방식 -> 함수 컴포넌트
+  const LikeButton = () => {
+    // 화살표함수 : this 쓸 일이 없다.
+    const [liked, setLiked] = React.useState(false); // 구조분해
+    console.log(liked)
+    console.log(setLiked)
+    // const result = React.useState(false);
+    // const liked = result[0]
+    // const setLiked = result[1]
+
+    if (liked) {
+      return 'You liked this.';
+    }
+    return (
+      <button onClick={() => {setLiked(true); }}>Like</button>
+    );
+
+  }
+</script>
+<script type="text/babel">
+  //ReactDOM.createRoot(document.querySelector('#root')).render(e(LikeButton)); 자바스크립트 사용할 경우
+  //ReactDOM.render(<LikeButton />, document.querySelector('#root')); // JSX 사용할 경우. 단 17버전용이다.
+  ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton/>  ); // 18버전
+</script>
+</body>
+</html>

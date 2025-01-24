@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>구구단</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class GuGuDan extends React.Component {
+      
+      // 컨스트럭터 없어도 된다.
+
+      //constructor(props){
+        //super(props)
+        //this.state = {
+        state = {
+          first: Math.ceil(Math.random() * 9),
+          second: Math.ceil(Math.random() * 9),
+          value: '',
+          result: '', 
+        };
+      //}
+      
+      // 직접 만들어준 함수는 화살표 함수로 해주자.
+      // this 관리 안해줘도 된다!
+      onSubmit = (e) => {
+        e.preventDefault();
+        if (parseInt(this.state.value) === this.state.first * this.state.second) {
+
+          // prevState로 변경
+          // 예전 state의 값으로 새로운 state를 만들 경우 이렇게 해주자
+          this.setState((prevState) => {
+            return {
+              result: prevState.value + ' 정답',
+              first: Math.ceil(Math.random() * 9),
+              second: Math.ceil(Math.random() * 9),
+              value: '',
+            };
+          });
+          this.input.focus();
+          //this.setState(
+          //  {
+          //    result: this.state.value + ' 정답',
+          //    first: Math.ceil(Math.random() * 9),
+          //    second: Math.ceil(Math.random() * 9),
+          //    value: '',
+          //  }
+          //);
+        } else {
+          this.setState(
+            {
+              result:'땡',
+              value: '',
+            }
+          );
+          this.input.focus();
+        }
+      };
+
+      onChange = (e) => {
+        this.setState({ value :e.target.value});
+      }
+
+      input; // ref에 쓰기 위해서 -> DOM에 직접 접근
+
+      onRefInput = (c) => { this.input = c; };
+      
+      // input tag 
+        // 상태이므로 마음대로 못바꾼다.
+        // onChange로 바꿀 수 있게 해준다.
+
+      // render()
+        // 여기는 화살표 함수 안해줘도 된다!
+
+      // 컨텐츠
+      // 렌더링 할 때 마다 실행되므로, 안에 복잡한 함수는 안넣는게 좋다.
+      render() {
+        return (
+          <React.Fragment>
+            <div>{this.state.first}곱하기{this.state.second}는?</div>
+            <form onSubmit={this.onSubmit}>
+              <input ref={this.onRefInput} type="number" value={this.state.value} onChange = {this.onChange} />
+              <button>입력!</button>
+            </form>
+            <div>{this.state.result}</div>
+          </React.Fragment>
+        );
+      }
+    }
+  </script>
+  <script type="text/babel">
+    //ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+    ReactDOM.createRoot(document.querySelector('#root')).render(<GuGuDan/>); // 18버전
+    //ReactDOM.createRoot(document.querySelector('#root')).render(<div><GuGuDan/><GuGuDan/><GuGuDan/></div>); // 18버전
+  </script>
+  </body>
+</html>
