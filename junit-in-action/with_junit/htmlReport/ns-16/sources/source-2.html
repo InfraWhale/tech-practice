@@ -1,0 +1,163 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AccountService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.chap08.account</a>
+</div>
+
+<h1>Coverage Summary for Class: AccountService (org.example.chap08.account)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AccountService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * ========================================================================
+&nbsp; *
+&nbsp; * Licensed to the Apache Software Foundation (ASF) under one or more
+&nbsp; * contributor license agreements.  See the NOTICE file distributed with
+&nbsp; * this work for additional information regarding copyright ownership.
+&nbsp; * The ASF licenses this file to You under the Apache License, Version 2.0
+&nbsp; * (the &quot;License&quot;); you may not use this file except in compliance with
+&nbsp; * the License.  You may obtain a copy of the License at
+&nbsp; *
+&nbsp; *   http://www.apache.org/licenses/LICENSE-2.0
+&nbsp; *
+&nbsp; * Unless required by applicable law or agreed to in writing, software
+&nbsp; * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+&nbsp; * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+&nbsp; * See the License for the specific language governing permissions and
+&nbsp; * limitations under the License.
+&nbsp; *
+&nbsp; * ========================================================================
+&nbsp; */
+&nbsp;package org.example.chap08.account;
+&nbsp;
+&nbsp;/**
+&nbsp; * A service that has different methods that we can use. Currently it holds only the transfer method, which transfers
+&nbsp; * money from one account to the other.
+&nbsp; */
+<b class="fc">&nbsp;public class AccountService {</b>
+&nbsp;    /**
+&nbsp;     * The account manager implementation to use.
+&nbsp;     */
+&nbsp;    private AccountManager accountManager;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A setter method to set the account manager implementation.
+&nbsp;     *
+&nbsp;     * @param manager
+&nbsp;     */
+&nbsp;    public void setAccountManager(AccountManager manager) {
+<b class="fc">&nbsp;        this.accountManager = manager;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A transfer method which transfers the amount of money
+&nbsp;     * from the account with the senderId to the account of
+&nbsp;     * beneficiaryId.
+&nbsp;     *
+&nbsp;     * @param senderId
+&nbsp;     * @param beneficiaryId
+&nbsp;     * @param amount
+&nbsp;     */
+&nbsp;    public void transfer(String senderId, String beneficiaryId, long amount) {
+<b class="fc">&nbsp;        Account sender = accountManager.findAccountForUser(senderId);</b>
+<b class="fc">&nbsp;        Account beneficiary = accountManager.findAccountForUser(beneficiaryId);</b>
+&nbsp;
+<b class="fc">&nbsp;        sender.debit(amount);</b>
+<b class="fc">&nbsp;        beneficiary.credit(amount);</b>
+<b class="fc">&nbsp;        this.accountManager.updateAccount(sender);</b>
+<b class="fc">&nbsp;        this.accountManager.updateAccount(beneficiary);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-02-10 14:29</div>
+</div>
+</body>
+</html>
