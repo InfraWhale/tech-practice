@@ -1,0 +1,21 @@
+body{
+  background: url(https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/2KFW/image/ASyBfni9TJ1SoXbrHlHRMI7S_xU.jpg);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction : column;
+  height: 100vh;
+}
+
+.weather-box{
+  border:3px solid white;
+  padding: 50px;
+  border-radius: 30px;
+  background-color: white;
+}
