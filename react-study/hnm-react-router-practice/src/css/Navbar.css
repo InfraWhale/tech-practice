@@ -1,0 +1,65 @@
+.login-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 20px;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .nav-section{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .menu-area {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  /* 좌측 공간은 비워두되, 너무 작지 않게 처리 */
+  .menu-left {
+    flex: 1;
+  }
+  
+/* 핵심: 화면 정중앙 고정 */
+.menu-list {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+  
+  .menu-list li {
+    white-space: nowrap; /* 글자가 줄바꿈되지 않도록 */
+    font-size: 14px;
+    padding: 5px 0;
+  }
+  
+  /* 우측 검색창은 고정 너비를 가지면서 오른쪽으로 붙도록 */
+  .menu-right {
+    width: 300px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .search-area {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-bottom: 2px solid black;
+    width: 100%;
+  }
+  
+  .search-area input {
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 14px;
+    width: 100%;
+  }
