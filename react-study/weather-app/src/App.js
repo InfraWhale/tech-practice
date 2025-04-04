@@ -14,7 +14,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 // 6. 데이터 들고오는 동안 로딩 스피너가 돈다.
 
 function App() {
-  const appid = "***REMOVED***";
+  const appid = process.env.REACT_APP_WEATHER_API_KEY;
   const [weather,setWeather] = useState(null);
   const [city, setCity] = useState('');
   const [loading, setLoading] = useState(false);
