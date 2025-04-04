@@ -14,12 +14,11 @@ import ClipLoader from "react-spinners/ClipLoader";
 // 6. 데이터 들고오는 동안 로딩 스피너가 돈다.
 
 function App() {
-  //const appid = "***REMOVED***";
-  const appid = "5345d9c06005c5f006ad7b7bbe00e4e";
+  const appid = "***REMOVED***";
   const [weather,setWeather] = useState(null);
   const [city, setCity] = useState('');
   const [loading, setLoading] = useState(false);
-  const cities = ['paris', 'new york', 'tokyo', 'seoul'];
+  const cities = ['Paris', 'New York', 'Tokyo', 'Seoul'];
 
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
