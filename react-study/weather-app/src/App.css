@@ -1,21 +1,59 @@
-body{
-  background: url(https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/2KFW/image/ASyBfni9TJ1SoXbrHlHRMI7S_xU.jpg);
-  height: 100vh;
-  background-repeat: no-repeat;
+/* 배경 이미지 + 어두운 반투명 오버레이 */
+body {
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+              url(https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/2KFW/image/ASyBfni9TJ1SoXbrHlHRMI7S_xU.jpg) no-repeat center center fixed;
   background-size: cover;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction : column;
   height: 100vh;
+  text-align: center;
 }
 
-.weather-box{
-  border:3px solid white;
-  padding: 50px;
-  border-radius: 30px;
-  background-color: white;
+/* 날씨 박스 */
+.weather-box {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 40px;
+  color: #fff;
+  width: 90%;
+  max-width: 450px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* 텍스트 스타일 */
+.weather-box h2 {
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.weather-box h3 {
+  font-size: 20px;
+  text-transform: capitalize;
+  margin-top: 10px;
+}
+
+/* 버튼 정렬 */
+.weather-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.weather-buttons button {
+  min-width: 110px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 20px;
 }
