@@ -1,7 +1,7 @@
 /* 배경 이미지 + 어두운 반투명 오버레이 */
 body {
   background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-              url(https://img1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/2KFW/image/ASyBfni9TJ1SoXbrHlHRMI7S_xU.jpg) no-repeat center center fixed;
+              url(./images/weather_app_bg.jpg) no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   margin: 0;
