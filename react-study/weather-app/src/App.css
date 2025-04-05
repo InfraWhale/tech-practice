@@ -1,4 +1,3 @@
-/* 배경 이미지 + 어두운 반투명 오버레이 */
 body {
   background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
               url(./images/weather_app_bg.jpg) no-repeat center center fixed;
@@ -17,7 +16,6 @@ body {
   text-align: center;
 }
 
-/* 날씨 박스 */
 .weather-box {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
@@ -31,7 +29,6 @@ body {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
-/* 텍스트 스타일 */
 .weather-box h2 {
   font-size: 28px;
   margin: 10px 0;
@@ -43,7 +40,6 @@ body {
   margin-top: 10px;
 }
 
-/* 버튼 정렬 */
 .weather-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -56,4 +52,129 @@ body {
   font-weight: bold;
   font-size: 14px;
   border-radius: 20px;
+}
+
+.search-box {
+  width: 90%;
+  max-width: 450px;
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  margin-right: 10px;
+  min-width: 0;
+}
+
+.search-button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: #ffffff88;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.search-button:hover {
+  background-color: #ffffffcc;
+}
+
+@media (max-width: 768px) {
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* ✅ 중앙 정렬 → 위쪽 정렬로 변경 */
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+    max-width: 75%;
+    margin-top: 10vh;
+  }
+
+  .weather-box,
+  .weather-buttons,
+  .search-box {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .weather-box {
+    padding: 30px 20px;
+    font-size: 14px;
+  }
+
+  .weather-box h2 {
+    font-size: 22px;
+  }
+
+  .weather-box h3 {
+    font-size: 16px;
+  }
+
+  .weather-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto;
+  }
+
+  .weather-buttons button:first-child {
+    flex-basis: 100%;
+  }
+
+  .weather-buttons button:not(:first-child) {
+    flex: 1 1 calc(50% - 10px);
+    text-align: center;
+  }
+
+  .search-box {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    height: 44px;
+  }
+
+  .search-input::placeholder {
+    font-size: 11px;
+  }
+
+  .search-button {
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    height: 44px;
+    white-space: nowrap;
+  }
 }

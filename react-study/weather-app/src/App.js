@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import WeatherBox from "./component/WeatherBox.js";
 import WeatherButton from "./component/WeatherButton.js";
+import SearchBox from "./component/SearchBox";
 import ClipLoader from "react-spinners/ClipLoader";
 
 // TODO
@@ -39,6 +40,7 @@ function App() {
       let data = await response.json();
       setWeather(data);
     } catch (err){
+      setWeather(null);
       alert("현재 위치 날씨 정보를 불러오지 못했습니다.");
     } finally {
       setLoading(false);
@@ -56,6 +58,7 @@ function App() {
       let data = await response.json();
       setWeather(data);
     } catch (err){
+      setWeather(null);
       alert("도시 날씨 정보를 불러오지 못했습니다.");
     } finally {
       setLoading(false);
@@ -77,6 +80,7 @@ function App() {
         <div className="container">
           <WeatherBox weather={weather}/>
           <WeatherButton cities={cities} city = {city} setCity = {setCity} />
+          <SearchBox setCity={setCity} />
         </div>
       )}
     </div>
