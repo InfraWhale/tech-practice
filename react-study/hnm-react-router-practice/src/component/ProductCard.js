@@ -1,23 +1,26 @@
-import React from 'react'
-import '../css/ProductCard.css'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from '../css/ProductCard.module.css';
 
 const ProductCard = ({ item }) => {
   const navigate = useNavigate();
-  const showDetail= () => {
+  const showDetail = () => {
     navigate(`/products/${item.id}`);
-  }
+  };
 
   return (
-    <div className="product-card" onClick={showDetail}>
-        <img src={item?.img} />
-        {/* \u00A0 : No Break Space(NBSP)*/}
-        <div>{item?.choice === true ? "Conscious choice" : "\u00A0"}</div> 
-        <div>{item?.title}</div>
-        <div>₩{item?.price}</div>
-        <div>{item?.new === true ? "신제품" : "\u00A0"} </div>
-    </div>
-  )
-}
+    <div className={styles.productCard} onClick={showDetail}>
+      <img src={item?.img} alt={item?.title} className={styles.productImage} />
 
-export default ProductCard
+      <div className={styles.badgeArea}>
+        {item?.new && <span className={`${styles.cardBadge} ${styles.new}`}>신상품</span>}
+        {item?.choice && <span className={`${styles.cardBadge} ${styles.choice}`}>Conscious choice</span>}
+      </div>
+
+      <div className={styles.productTitle}>{item?.title}</div>
+      <div className={styles.productPrice}>₩{item?.price.toLocaleString()}</div>
+    </div>
+  );
+};
+
+export default ProductCard;

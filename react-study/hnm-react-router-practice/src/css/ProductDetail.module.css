@@ -1,0 +1,52 @@
+.detailContainer {
+  margin-top: 50px;
+}
+
+.productImage img {
+  width: 100%;
+  max-width: 500px;
+  object-fit: contain;
+}
+
+.productInfo {
+  padding: 20px;
+}
+
+.detailBadge {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 8px;
+}
+
+.new {
+  background-color: #d9534f;
+  color: white;
+}
+
+.choice {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.productTitle {
+  margin: 20px 0 10px 0;
+  font-size: 1.8rem;
+}
+
+.productPrice {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.sizeSelect {
+  margin-bottom: 20px;
+}
+
+.buyBtn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+}

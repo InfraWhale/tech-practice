@@ -8,7 +8,7 @@ import Navbar from './component/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import PrivateRoute from './component/route/PrivateRoute';
-
+import { useNavigate } from 'react-router-dom';
 
 // 1. 전체 상품 페이지, 로그인, 상품 상세 페이지.
 // 1-1. 네비게이션 바 만들기.
@@ -22,12 +22,16 @@ import PrivateRoute from './component/route/PrivateRoute';
 
 function App() {
   const[authenticate, setAuthenticate] = useState(false) // true면 로그인 됨, false면 로그인 안됨
+
+  const navigate = useNavigate();
+
   useEffect(()=>{
-    console.log("AA", authenticate);
+      navigate('/');
   }, [authenticate]);
+
   return (
     <div>
-      <Navbar />
+      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} />
       <Routes>
         <Route path="/" element={<ProductAll />} />
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate} />} />

@@ -5,20 +5,34 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import '../css/Navbar.css'
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
-    const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M Home', 'Sale', '지속가능성' ]
+const Navbar = ({ authenticate, setAuthenticate }) => {
+    const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M Home', 'Sale', '지속가능성' ];
 
     const navigate = useNavigate();
 
     const goToLogin = () => {
         navigate('/login')
     }
+
+    const handleLogout = () => {
+        setAuthenticate(false);
+    };
+
+    const search = (event) => {
+        if(event.key === "Enter") {
+            // 입력한 검색어를 읽어와서
+            let keyword = event.target.value;
+            console.log("keyword : ", keyword);
+            // url을 바꿔준다.
+            navigate(`/?q=${keyword}`);
+        }
+    }
   return (
     <div>
         <div>
-            <div className='login-button' onClick={goToLogin}>
+            <div className='login-button' onClick={authenticate ? handleLogout : goToLogin}>
                 <FontAwesomeIcon icon={faUser} />
-                <div>로그인</div>
+                <div>{authenticate ? '로그아웃' : '로그인'}</div>
             </div>
         </div>
         <div>
@@ -34,7 +48,7 @@ const Navbar = () => {
             <div className="menu-right">
                 <div className='search-area'>
                     <FontAwesomeIcon icon={faSearch}/>
-                    <input type="text" placeholder="검색어를 입력하세요" />
+                    <input type="text" placeholder="검색어를 입력하세요" onKeyUp={(event) => search(event)}/>
                 </div>
             </div>
         </div>
