@@ -51,7 +51,7 @@ const ProductDetail = () => {
             className={styles.buyBtn}
             disabled={!selectedSize}
           >
-            {selectedSize ? '구매하기' : '먼저 사이즈를 선택하세요'}
+            {selectedSize ? '구매하기' : '먼저 옵션을 선택하세요'}
           </Button>
         </Col>
       </Row>
