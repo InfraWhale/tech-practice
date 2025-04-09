@@ -4,9 +4,10 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import '../css/Navbar.css'
 import { useNavigate } from 'react-router-dom';
+import mashopLogo from '../image/mashop.png';
 
 const Navbar = ({ authenticate, setAuthenticate }) => {
-    const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M Home', 'Sale', '지속가능성' ];
+    const menuList = ['광고상품', '남성복', '상남자관', 'Sale' ];
 
     const navigate = useNavigate();
 
@@ -37,7 +38,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
         </div>
         <div>
             <div className='nav-section'>
-                <img width={100} src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/800px-H%26M-Logo.svg.png' onClick={() => navigate('/')} />
+                <img width={200} src={mashopLogo} onClick={() => navigate('/')} />
             </div>
         </div>
         <div className='menu-area'>

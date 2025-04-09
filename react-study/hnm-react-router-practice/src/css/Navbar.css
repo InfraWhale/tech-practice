@@ -1,65 +1,129 @@
+/* 로그인 버튼 */
 .login-button {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 20px;
-    gap: 5px;
-    cursor: pointer;
-  }
-  
-  .nav-section{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .menu-area {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-  }
-  
-  /* 좌측 공간은 비워두되, 너무 작지 않게 처리 */
-  .menu-left {
-    flex: 1;
-  }
-  
-/* 핵심: 화면 정중앙 고정 */
-.menu-list {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px;
+  gap: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #ff69b4;
+  transition: color 0.3s ease;
 }
-  
-  .menu-list li {
-    white-space: nowrap; /* 글자가 줄바꿈되지 않도록 */
-    font-size: 14px;
-    padding: 5px 0;
+
+.login-button:hover {
+  color: #ff1493;
+  text-shadow: 0 0 6px rgba(255, 20, 147, 0.8);
+}
+
+/* 로고 가운데 정렬 및 반짝임 효과 */
+.nav-section {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-section img {
+  animation: sparkle 2s infinite alternate;
+  filter: drop-shadow(0 0 5px #ff69b4);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-section img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes sparkle {
+  0% {
+    filter: drop-shadow(0 0 2px #ff69b4);
   }
-  
-  /* 우측 검색창은 고정 너비를 가지면서 오른쪽으로 붙도록 */
-  .menu-right {
-    width: 300px;
-    display: flex;
-    justify-content: flex-end;
+  100% {
+    filter: drop-shadow(0 0 10px #ff69b4);
   }
-  
-  .search-area {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    border-bottom: 2px solid black;
-    width: 100%;
-  }
-  
-  .search-area input {
-    border: none;
-    outline: none;
-    padding: 5px;
-    font-size: 14px;
-    width: 100%;
-  }
+}
+
+/* 메뉴 전체 라인 */
+.menu-area {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+/* 왼쪽 여백 */
+.menu-left {
+  flex: 1;
+}
+
+/* 메뉴 중앙 고정 + 블링블링 효과 */
+.menu-list {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list li {
+  white-space: nowrap;
+  font-size: 20px;
+  font-weight: 900;
+  padding: 5px 0;
+  color: #ff69b4;
+  text-shadow: 1px 1px 3px rgba(255, 105, 180, 0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-list li:hover {
+  transform: scale(1.1);
+  color: #ff1493;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+}
+
+/* 오른쪽 검색창 영역 */
+.menu-right {
+  width: 300px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px solid #ff69b4;
+  width: 100%;
+  padding: 4px 6px;
+  background: linear-gradient(to right, #ffe6f0, #fff0f5);
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.search-area:hover {
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
+}
+
+/* 아이콘 핑크 컬러 */
+.search-area svg {
+  color: #ff69b4;
+}
+
+.search-area input {
+  border: none;
+  outline: none;
+  padding: 6px;
+  font-size: 14px;
+  width: 100%;
+  background: transparent;
+  color: #ff1493;
+  font-weight: bold;
+}
+
+/* placeholder 텍스트 색상도 핑크 */
+.search-area input::placeholder {
+  color: #ffb6c1;
+  font-weight: 500;
+}

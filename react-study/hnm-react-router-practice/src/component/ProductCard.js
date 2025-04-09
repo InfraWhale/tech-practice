@@ -14,7 +14,7 @@ const ProductCard = ({ item }) => {
 
       <div className={styles.badgeArea}>
         {item?.new && <span className={`${styles.cardBadge} ${styles.new}`}>신상품</span>}
-        {item?.choice && <span className={`${styles.cardBadge} ${styles.choice}`}>Conscious choice</span>}
+        {item?.choice && <span className={`${styles.cardBadge} ${styles.choice}`}>사장님 추천</span>}
       </div>
 
       <div className={styles.productTitle}>{item?.title}</div>

@@ -10,6 +10,7 @@ const ProductDetail = () => {
 
   const getProductDetail = async () => {
     let url = `https://my-json-server.typicode.com/InfraWhale/tech-practice/products/${id}`;
+    // let url = `http://localhost:5000/products/${id}`;
     let response = await fetch(url);
     let data = await response.json();
     setProduct(data);
@@ -31,14 +32,14 @@ const ProductDetail = () => {
         </Col>
         <Col md={6} className={styles.productInfo}>
           {product?.new && <span className={`${styles.detailBadge} ${styles.new}`}>신상품</span>}
-          {product?.choice && <span className={`${styles.detailBadge} ${styles.choice}`}>Conscious choice</span>}
+          {product?.choice && <span className={`${styles.detailBadge} ${styles.choice}`}>사장님 추천</span>}
           <h2 className={styles.productTitle}>{product?.title}</h2>
           <p className={styles.productPrice}>₩ {product?.price?.toLocaleString()}</p>
 
           <Form.Group className={styles.sizeSelect}>
-            <Form.Label>사이즈 선택</Form.Label>
+            <Form.Label>옵션</Form.Label>
             <Form.Select onChange={handleSizeChange} value={selectedSize}>
-              <option value="">사이즈를 선택하세요</option>
+              <option value="">옵션을 선택하세요</option>
               {product?.size?.map((s, idx) => (
                 <option key={idx} value={s}>{s}</option>
               ))}
