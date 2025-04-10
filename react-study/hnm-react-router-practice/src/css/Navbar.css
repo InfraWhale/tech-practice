@@ -127,3 +127,73 @@
   color: #ffb6c1;
   font-weight: 500;
 }
+
+/* 햄버거 버튼: 좌측 상단 고정 */
+.hamburger-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 200;
+  display: none;
+  cursor: pointer;
+  color: #ff69b4;
+}
+
+/* 모바일 메뉴 리스트 */
+.mobile-menu-slide {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 70%;
+  height: 100%;
+  background-color: white;
+  padding: 60px 20px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease-in-out;
+  z-index: 150;
+}
+
+.mobile-menu-slide.open {
+  left: 0;
+}
+
+.mobile-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu-list li {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff69b4;
+  cursor: pointer;
+}
+
+/* 어두운 배경 오버레이 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+/* 모바일 반응형 */
+@media screen and (max-width: 768px) {
+  .menu-list,
+  .menu-left,
+  .menu-right {
+    display: none;
+  }
+
+  .hamburger-icon {
+    display: block;
+  }
+}
+
