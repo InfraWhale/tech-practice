@@ -1,0 +1,51 @@
+/* style.css */
+
+.content-wrapper {
+background-color: #000;
+color: #fff;
+min-height: 100vh;
+padding: 1rem;
+}
+
+.navbar {
+  background-color: #000 !important;
+  padding: 1rem 2rem;
+}
+
+.navbar-brand {
+  color: #e50914 !important;
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+  color: #fff !important;
+  margin-right: 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #e50914 !important;
+}
+
+.form-control {
+  background-color: #666 !important;
+  border: none;
+  color: #fff;
+}
+
+.form-control::placeholder {
+  color: #000;
+}
+
+.netflix-search-btn {
+    color: #e50914 !important;
+    border: 1px solid #e50914 !important;
+    background-color: transparent !important;
+    border-radius: 4px !important;
+  }
+  
+  .netflix-search-btn:hover {
+    background-color: #e50914 !important;
+    color: #fff !important;
+  }
