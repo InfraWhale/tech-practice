@@ -6,7 +6,6 @@
     position: relative;
   }
   
-  /* 배경 위에 어두운 그라데이션 덮기 */
   .banner:before {
     content: '';
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
@@ -36,10 +35,9 @@
     line-height: 1.4;
   }
   
-  /* ✅ 반응형 대응 */
   @media screen and (max-width: 768px) {
     .banner {
-      height: 40vh; /* ✅ 기존 56vh → 40vh 정도로 줄임 */
+      height: 40vh;
       background-position: center center;
     }
   
@@ -54,7 +52,7 @@
   
     .banner-text-area p {
         display: -webkit-box;
-        -webkit-line-clamp: 3; /* 최대 3줄 */
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         font-size: 0.9rem;
