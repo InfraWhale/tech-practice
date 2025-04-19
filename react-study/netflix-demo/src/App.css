@@ -1,6 +1,6 @@
 body {
-  background-color: #000;
-  color: #fff;
+  background-color: #000 !important;
+  color: #fff !important;
   margin: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
