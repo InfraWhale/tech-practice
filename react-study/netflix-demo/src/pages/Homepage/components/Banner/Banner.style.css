@@ -1,0 +1,72 @@
+.banner {
+    height: 56vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  
+  /* 배경 위에 어두운 그라데이션 덮기 */
+  .banner:before {
+    content: '';
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .banner-text-area {
+    width: 36%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+    z-index: 2;
+    position: relative;
+    color: white;
+  }
+  
+  .banner-text-area > * {
+    z-index: 2;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  /* ✅ 반응형 대응 */
+  @media screen and (max-width: 768px) {
+    .banner {
+      height: 40vh; /* ✅ 기존 56vh → 40vh 정도로 줄임 */
+      background-position: center center;
+    }
+  
+    .banner-text-area {
+      width: 90%;
+      padding: 1.2rem;
+    }
+  
+    .banner-text-area h1 {
+      font-size: 1.3rem;
+    }
+  
+    .banner-text-area p {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* 최대 3줄 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 0.9rem;
+      }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .banner-text-area h1 {
+      font-size: 1.2rem;
+    }
+  
+    .banner-text-area p {
+      font-size: 0.8rem;
+    }
+  }
