@@ -15,15 +15,9 @@ const Homepage = () => {
   return (
     <div>
       <Banner />
-      <h1 className='slide-title'>Popular Movies</h1>
-      {/* <PopularMovieSlide /> */}
-      <MovieSlide useMovieQuery={usePopularMoviesQuery} />
-      <h1 className='slide-title'>Top Rated</h1>
-      <MovieSlide useMovieQuery={useTopRatedMoviesQuery} />
-      {/* <TopRatedMovieSlide /> */}
-      <h1 className='slide-title'>Upcoming</h1>
-      <MovieSlide useMovieQuery={useUpcomingMoviesQuery} />
-      {/* <UpcomingMovieSlide /> */}
+      <MovieSlide useMovieQuery={usePopularMoviesQuery} title="Popular Movies"/>
+      <MovieSlide useMovieQuery={useTopRatedMoviesQuery} title="Top Rated"/>
+      <MovieSlide useMovieQuery={useUpcomingMoviesQuery} title="Upcoming"/>
     </div>
   )
 }
