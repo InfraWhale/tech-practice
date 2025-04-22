@@ -4,9 +4,9 @@ import './MovieCard.style.css';
 import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
 
 const MovieCard = ({movie}) => {
-
-      const {data:genreData} = useMovieGenreQuery();
-      console.log("ggg", genreData);
+    const DEFAULT_IMAGE = "https://i.pinimg.com/736x/bb/23/46/bb2346582caedef6034cb425150edcbc.jpg";
+    const {data:genreData} = useMovieGenreQuery();
+    //   console.log("ggg", genreData);
 
     //   const showGenre = (genreIdList) => {
     //     if(!genreData) return[];
@@ -27,12 +27,11 @@ const MovieCard = ({movie}) => {
 
   return (
     <div
-        style={{
-            backgroundImage:
-                "url(" + 
-                `https://media.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path}` + 
-                ")"
-        }}
+    style={{
+        backgroundImage: `url(${movie.poster_path
+          ? `https://media.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path}`
+          : DEFAULT_IMAGE})`,
+      }}
         className="movie-card"
     >
         <div className="overlay">

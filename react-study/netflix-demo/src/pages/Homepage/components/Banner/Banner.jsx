@@ -1,7 +1,8 @@
 import React from 'react'
 import { usePopularMoviesQuery } from '../../../../hooks/usePopularMovies'
-import Alert from 'react-bootstrap/Alert';
+// import Alert from 'react-bootstrap/Alert';
 import "./Banner.style.css"
+import { Spinner, Alert } from 'react-bootstrap';
 
 const Banner = () => {
 
@@ -9,7 +10,11 @@ const Banner = () => {
     console.log("ddd", data);
 
     if(isLoading) {
-        return <h1>Loading ...</h1>
+        return (
+            <div className="spinner-area">
+              <Spinner animation="border" variant="danger" style={{ width: '5rem', height: '5rem' }} />
+            </div>
+          );
     }
     if(isError) {
         return <Alert variant='danger'>{error.message}</Alert>;
