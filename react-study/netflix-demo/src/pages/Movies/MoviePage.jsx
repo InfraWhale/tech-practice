@@ -14,13 +14,12 @@ const MoviePage = () => {
 
   const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, page });
 
-  // ✅ 현재 화면에 보여줄 데이터 상태
+  // ✅ 현재 화면에 보여줄 데이터
   const [visibleData, setVisibleData] = useState(null);
 
-  // ✅ 이전 URL 저장용 (정상적인 상대경로로)
-  const prevUrlRef = useRef(window.location.pathname + window.location.search);
+  // ✅ 이전에 성공했던 검색 키워드 기억
+  const lastSuccessfulKeywordRef = useRef(null);
 
-  // ✅ 페이지네이션 클릭 핸들러
   const handlePageClick = ({ selected }) => {
     setPage(selected + 1);
   };
@@ -28,26 +27,30 @@ const MoviePage = () => {
   const isMobile = window.innerWidth <= 768;
 
   const pageCount = visibleData?.total_pages
-  ? Math.min(visibleData.total_pages, 500) // 인기 영화는 500이 한계
-  : 1;
+    ? Math.min(visibleData.total_pages, 500)
+    : 1;
 
-  // ✅ data 변경 시 처리
+  // ✅ 검색 결과 수신 시 처리
   useEffect(() => {
     if (!data) return;
 
     if (keyword && data.results.length === 0) {
       alert("검색 결과가 없습니다.");
 
-      // ✅ 이전 검색 결과가 있던 주소로 이동
-      navigate(prevUrlRef.current);
+      // ✅ 직전 성공 검색 기록이 있다면 해당 키워드로 이동
+      if (lastSuccessfulKeywordRef.current) {
+        navigate(`/movies?q=${lastSuccessfulKeywordRef.current}`);
+      } else {
+        navigate("/movies");
+      }
     } else {
-      // ✅ 정상적인 검색 결과라면 현재 URL 저장 + 화면 갱신
-      prevUrlRef.current = window.location.pathname + window.location.search;
+      // ✅ 정상 검색 결과일 경우 화면 갱신
+      lastSuccessfulKeywordRef.current = keyword;
       setVisibleData(data);
     }
   }, [data, keyword, navigate]);
 
-  // ✅ keyword 변경 시 page 초기화
+  // ✅ 검색어 변경 시 페이지 초기화
   useEffect(() => {
     setPage(1);
   }, [keyword]);
@@ -79,7 +82,7 @@ const MoviePage = () => {
             ))}
           </Row>
 
-          {visibleData?.results.length > 0 && (
+          {visibleData?.total_pages > 1 && (
             <div className="pagination-wrapper">
               <ReactPaginate
                 nextLabel=">"
